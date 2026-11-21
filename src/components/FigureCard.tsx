@@ -11,6 +11,9 @@ export const FigureCard: React.FC<FigureCardProps> = ({ figure, compact = false 
   const [zoomed, setZoomed] = useState(false);
   const [errored, setErrored] = useState(false);
 
+  const baseUrl = import.meta.env.BASE_URL || './';
+  const resolvedSrc = `${baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`}${figure.url.replace(/^\/+/, '')}`;
+
   useEffect(() => {
     if (!zoomed) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -27,7 +30,7 @@ export const FigureCard: React.FC<FigureCardProps> = ({ figure, compact = false 
           {!errored ? (
             <>
               <img
-                src={figure.url}
+                src={resolvedSrc}
                 alt={`${figure.number}: ${figure.caption}`}
                 loading="lazy"
                 onError={() => setErrored(true)}
@@ -99,7 +102,7 @@ export const FigureCard: React.FC<FigureCardProps> = ({ figure, compact = false 
             </div>
             <div className="bg-white p-6 flex items-center justify-center max-h-[75vh] overflow-auto">
               <img
-                src={figure.url}
+                src={resolvedSrc}
                 alt={`${figure.number}: ${figure.caption}`}
                 className="max-w-full max-h-[68vh] object-contain"
               />

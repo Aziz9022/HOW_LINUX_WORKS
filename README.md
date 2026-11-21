@@ -30,10 +30,10 @@ npm run build
 npm run preview
 ```
 
-## Deploying as a Static Site (e.g., GitHub Pages)
+## Deploying to GitHub Pages
 
-This application is 100% client-side static HTML/CSS/JS + local assets:
+This project is pre-configured for GitHub Pages (`base: './'` in `vite.config.ts`, subpath-safe figure paths, and `.github/workflows/deploy.yml`):
 
-1. If deploying to a repository subpath (`https://<user>.github.io/<repo>/`), set `base: './'` in `vite.config.ts` and ensure asset URLs resolve relative to base.
-2. Run `npm run build` to generate `dist/`.
-3. Publish the `dist/` directory via GitHub Pages (Actions workflow or `gh-pages` branch).
+1. Push the repository to GitHub on the `main` branch.
+2. Open **Settings → Pages** in your GitHub repository and set **Source** to **GitHub Actions**.
+3. The **Deploy to GitHub Pages** workflow automatically builds `dist/` and publishes your live URL (`https://<username>.github.io/<repo>/`).
